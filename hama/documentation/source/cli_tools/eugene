@@ -1,0 +1,10 @@
+.. index:: PDF
+
+.. _cli_eugene:
+
+``eugene`` - PDF
+================
+.. todo:: more index entries for ``eugene``
+.. todo:: user guide for ``eugene``
+.. todo:: built-in help listing for ``eugene``
+.. note:: Entry point for this command is in :ref:`hama.eugene <e_p_eugene>`

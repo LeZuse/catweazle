@@ -1,0 +1,24 @@
+.. index:: title case, capitalisation
+
+.. _cli_hama-case:
+
+``hama-case`` - Inteligent Title Case
+======================================
+.. todo:: user guide for hama-case
+
+.. code-block:: bash
+
+   $ hama-case "XXL Stylus Pen for Nintendo DSi XL"
+   XXL Stylus Pen for Nintendo DSi XL
+   
+   $ hama-case "usb hub 1:4, silver, bus powered"
+   USB Hub 1:4, Silver, Bus Powered
+   
+   $ hama-case -d "CamelCase mixedCase" "the difference between camelcase & mixedcase"
+   The Difference Between CamelCase & mixedCase
+
+
+
+.. program-output:: ../../../bin/hama-case -h
+
+.. note:: Entry point for this command is :ref:`hama.hama_case_cli <e_p_hamacase>`

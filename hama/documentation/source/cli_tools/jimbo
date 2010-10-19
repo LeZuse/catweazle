@@ -1,0 +1,10 @@
+.. index:: page numbers, pagination, NLP
+
+.. _cli_jimbo:
+
+``jimbo`` - Database
+====================
+.. todo:: user guide ``jimbo``
+.. todo:: built-in help listing for ``jimbo``
+.. note:: Entry point for this command is in :ref:`hama.jimbo <e_p_jimbo>`
+

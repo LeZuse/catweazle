@@ -1,0 +1,53 @@
+.. index:: title case, capitalisation
+
+.. _cli_hama-case:
+
+``hama-case`` - Inteligent Title Case
+======================================
+.. todo:: user guide for hama-case
+
+This command applies correct title capitalisation on a string of text. It capitalises all Nouns, Adjectives, Verbs & Numbers. It uses built in dictionary of words with custom capitalisation (such as 'USB', 'mAh' etc.).you can override this dictionary or add your own entries on each call. 
+
+-----
+
+Basic usage is to call the command with string(s) of text as argument(s)
+
+.. code-block:: bash
+   
+   $ hama-case couple of words that need to be title cased
+   Couple of Words That Need to Be Title Cased
+
+   $ hama-case "XXL Stylus Pen for Nintendo DSi XL"
+   XXL Stylus Pen for Nintendo DSi XL
+   
+   $ hama-case "usb hub 1:4, silver, bus powered"
+   USB Hub 1:4, Silver, Bus Powered
+
+Please keep in mind that all arguments will be delimited by single space. If you want to include multiple whitespaces the result, enclose them in double quotation marks
+
+.. code-block:: bash
+   
+   $ hama-case crazy     spaces in my TITLE
+   Crazy Spaces in My Title
+   $ hama-case "crazy     spaces in my TITLE"
+   Crazy     Spaces in My Title
+
+You can override or add dictionary entries via -d switch followed by list of custom-capitalised words.
+
+.. code-block:: bash
+
+   $ hama-case -d "CamelCase mixedCase" "the difference between camelcase & mixedcase"
+   The Difference Between CamelCase & mixedCase
+   $ hama-case -d "lOCK USEFUL" "caps lock is the most useful of all useful keys"
+   Caps lOCK Is the Most USEFUL of All USEFUL Keys
+
+You can get quick help with the -h switch
+
+.. program-output:: ../../../bin/hama-case -h
+   :prompt:
+   
+-----
+
+Keep in mind that this command is only a front-end to :ref:`hama.textutils.hama_case <hama_case>`, and as such it shares all its limitation
+
+.. note:: Entry point for this command is :ref:`hama.hama_case_cli <e_p_hamacase>`

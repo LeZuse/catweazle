@@ -1,0 +1,9 @@
+.. index:: Xinet, descriptions, download images
+
+.. _cli_guppy:
+
+``guppy`` - Resources
+=====================
+.. todo:: user guide ``guppy``
+.. todo:: built-in help listing for ``guppy``
+.. note:: Entry point for this command is in :ref:`hama.guppy <e_p_guppy>`
