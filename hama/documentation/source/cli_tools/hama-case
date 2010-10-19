@@ -4,7 +4,6 @@
 
 ``hama-case`` - Inteligent Title Case
 ======================================
-.. todo:: user guide for hama-case
 
 This command applies correct title capitalisation on a string of text. It capitalises all Nouns, Adjectives, Verbs & Numbers. It uses built in dictionary of words with custom capitalisation (such as 'USB', 'mAh' etc.).you can override this dictionary or add your own entries on each call. 
 

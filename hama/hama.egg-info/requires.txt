@@ -1,2 +1,4 @@
 SQLAlchemy
 titlecase
+Nose
+Sphinx
