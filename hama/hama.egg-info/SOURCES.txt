@@ -9,9 +9,13 @@ hama.egg-info/entry_points.txt
 hama.egg-info/not-zip-safe
 hama.egg-info/requires.txt
 hama.egg-info/top_level.txt
-hama/bcp/__init__.py
-hama/bcp/testing.py
-hama/bcp/testing_test.py
+hama/cli/__init__.py
+hama/cli/eugene.py
+hama/cli/grimble.py
+hama/cli/guppy.py
+hama/cli/hamacase_cli.py
+hama/cli/jimbo.py
+hama/cli/update_e_presenter.py
 hama/databaseutils/__init__.py
 hama/imageutils/__init__.py
 hama/pdfutils/__init__.py
