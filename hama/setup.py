@@ -21,7 +21,9 @@ setup(
 	
 	install_requires=[
 		'SQLAlchemy',
-		'titlecase'
+		'titlecase', 
+		'Nose',
+		'Sphinx'
 		],
 	
 	test_suite= 'nose.collector',
