@@ -6,7 +6,35 @@ User Guide
 
 + intro
 + terminal primer
-
+  
+  + admit being a begginer myself
+  + what is bash
+  + why you need it
+  + Terminal.app, XTerminal, gnome-terminal (mention MS "DOS box")
+  + "-----"
+  + working directory (concept)
+  + home directory (concept)
+  + filesystem browsing (mention 'Volumes', 'mnt', 'media' vs 'drives')
+  + filepath ar argument
+  + TAB completion
+  + -----
+  + running executables
+    
+    + from full path
+    + from $PATH
+    
+  + options & arguments (mention --help)
+  + -----
+  + tips & tricks
+    
+    + C-c
+    + C-l
+    + C-D
+  
++ bogus bp
+  
+  
+  
 .. todo:: finish user guide intro outline
 .. todo:: user guide intro
 
