@@ -17,14 +17,14 @@ User Guide
   + filesystem browsing (mention 'Volumes', 'mnt', 'media' vs 'drives')
   + filepath ar argument
   + TAB completion
-  + -----
+  + "-----"
   + running executables
     
     + from full path
     + from $PATH
     
   + options & arguments (mention --help)
-  + -----
+  + "-----"
   + tips & tricks
     
     + C-c
