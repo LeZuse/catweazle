@@ -6,6 +6,8 @@ def parse_arguments(cli_options):
 	
 	.. todo:: write parse_arguments docstring
 	
+	.. todo:: built-in help is ugly
+	
 	'''
 	description = cli_options['description']
 	parser = OptionParser(description=description)

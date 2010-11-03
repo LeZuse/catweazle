@@ -8,6 +8,7 @@
    hama.imageutils.rst
    hama.databaseutils.rst
    hama.pdfutils.rst
+   hama.utilities.rst
 
 
 

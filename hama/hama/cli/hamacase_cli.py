@@ -12,7 +12,6 @@ def hama_case_cli():
     .. todo:: Implement filter functionality ($ echo nimh | hama-case => 'NiMH')
     .. todo:: Format for `more_capitalisation` file is too strict. Allow also line ends (at least)
     .. todo:: `more_capitalisation` list doesn't allow group of words
-    .. todo:: built-in help is ugly
     
     '''
     
