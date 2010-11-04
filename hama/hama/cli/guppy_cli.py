@@ -13,9 +13,9 @@ def guppy_cli():
     VERSION = '0.1'
     
     cli_options = {
-        'description': ''' d ''',
+        'description': '''Guppy gets resources for given codes''',
         
-        'usage': '\n'.join(['', '%prog "text"', '%prog -v']), 
+        'usage': '\n'.join(['', '%prog [-m -a -t -c] codes', '%prog -v']), 
         
         'options': [
             [   '-v', 
@@ -27,12 +27,41 @@ def guppy_cli():
                     }
                 ],
                 
-            [   '-d', 
-                '--additional-dictionary', 
-                {   'dest': 'additional_dictionary', 
-                    'help': 'list of custom-capitalised words'
+            [   '-m', 
+                '--get_images', 
+                {   'dest': 'get_images', 
+                    'help': 'downloads images',
+                    'default': False, 
+                    'action': "store_true"                    
                     }
-                ]
+                ],
+                
+            [   '-c', 
+                '--get-packshots', 
+                {   'dest': 'get_packshots', 
+                    'help': 'gets packshot images',
+                    'default': False, 
+                    'action': "store_true"                    
+                    }
+                ],                
+
+            [   '-a', 
+                '--get-packaging-artwork', 
+                {   'dest': 'get_packaging_artwork', 
+                    'help': 'downloads all PDF files',
+                    'default': False, 
+                    'action': "store_true"                    
+                    }
+                ],
+                
+            [   '-t', 
+                '--get-product-text', 
+                {   'dest': 'get_product_text', 
+                    'help': 'gets the description from hama.de',
+                    'default': False, 
+                    'action': "store_true"                    
+                    }
+                ]                 
 
             ]
         }    
@@ -48,6 +77,8 @@ def guppy_cli():
         parser.print_help()
         sys.exit(0)
     
+    options = eval(str(options))
+    options = [i for i in options if options[i] == True]
+    guppy(options=options, args=args)
     
     
-    return 'guppy'

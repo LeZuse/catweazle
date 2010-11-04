@@ -9,6 +9,8 @@
    hama.databaseutils.rst
    hama.pdfutils.rst
    hama.utilities.rst
+   hama.guppy.rst
+   hama.jimbo.rst
 
 
 
