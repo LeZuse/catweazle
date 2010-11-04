@@ -5,5 +5,16 @@
 ``guppy`` - Resources
 =====================
 .. todo:: user guide ``guppy``
-.. todo:: built-in help listing for ``guppy``
-.. note:: Entry point for this command is in :ref:`hama.guppy <e_p_guppy>`
+
+-----
+
+You can get quick help with the -h switch
+
+.. program-output:: ../../../bin/guppy -h
+   :prompt:
+   
+-----
+
+Keep in mind that this command is only a front-end to :ref:`hama.guppy <guppy>`, and as such it shares all its limitation
+
+.. note:: Entry point for this command is :ref:`hama.guppy_cli <e_p_guppy>`

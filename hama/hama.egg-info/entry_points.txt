@@ -4,5 +4,5 @@ grimble = hama:grimble
 egene = hama:egene
 update_e_presenter = hama:update_e_presenter
 hama-case = hama:hama_case_cli
-guppy = hama:guppy
+guppy = hama:guppy_cli
 

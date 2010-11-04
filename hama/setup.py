@@ -31,7 +31,7 @@ setup(
 	entry_points={
 		'console_scripts': [
 			'hama-case=hama:hama_case_cli',
-			'guppy=hama:guppy',
+			'guppy=hama:guppy_cli',
 			'grimble=hama:grimble',
 			'jimbo=hama:jimbo',
 			'egene=hama:egene',
