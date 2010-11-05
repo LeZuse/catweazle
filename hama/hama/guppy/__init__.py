@@ -42,21 +42,21 @@ def guppy(options, args):
             
             resource_data = resource_request_handler(supplier_code, supplier)
             
-            output_file = '%s/%s/%s%s.%s' % (CWD, request, code[0], resource_data.name, resource_data.format)
-            
-            with open(output_file, 'w') as output:
-                if request == 'get_product_text':
-                    product_description_template = '%s\n%s\n%s\n%s\n%s'
-                    product_description = (
-                        resource_data.data.code,
-                        resource_data.data.link,
-                        resource_data.data.name,
-                        resource_data.data.remark,
-                        resource_data.data.description)
-                    
-                    output.write(product_description_template % product_description)
-                else:
-                    output.write(data.data)
+#             output_file = '%s/%s/%s%s.%s' % (CWD, request, code[0], resource_data.name, resource_data.format)
+#             
+#             with open(output_file, 'w') as output:
+#                 if request == 'get_product_text':
+#                     product_description_template = '%s\n%s\n%s\n%s\n%s'
+#                     product_description = (
+#                         resource_data.data.code,
+#                         resource_data.data.link,
+#                         resource_data.data.name,
+#                         resource_data.data.remark,
+#                         resource_data.data.description)
+#                     
+#                     output.write(product_description_template % product_description)
+#                 else:
+#                     output.write(data.data)
             
     
     
