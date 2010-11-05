@@ -3,6 +3,7 @@
 '''
 
 import os
+import pdb
 
 from hama.jimbo import determine_supplier
 from get_images import main as get_images
@@ -14,6 +15,8 @@ def guppy(options, args):
     '''
     ..todo: write guppy docstring (hama.guppy.guppy)
     '''
+    
+    # pdb.set_trace()
     
     CWD = os.getcwd()
     codes = determine_supplier(args)
