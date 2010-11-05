@@ -18,8 +18,8 @@ def guppy(options, args):
     CWD = os.getcwd()
     codes = determine_supplier(args)
     
-    for i in options:
-        os.mkdir(i)
+#     for i in options:
+#         os.mkdir(i)
     
     
     resources = {
@@ -33,10 +33,27 @@ def guppy(options, args):
     
     for code in codes:
         for request in options:
-            data = resources[request](code[2])
+            supplier = code[1]
+            supplier_code = code[2]
+            resource_request_handler = resources[request]
             
-            with open('%s/%s/%s' % (CWD, request, code[0]), 'w') as output:
-                output.write(data)
+            resource_data = resource_request_handler(supplier_code, supplier)
+            
+            output_file = '%s/%s/%s%s.%s' % (CWD, request, code[0], resource_data.name, resource_data.format)
+            
+            with open(output_file, 'w') as output:
+                if request == 'get_product_text':
+                    product_description_template = '%s\n%s\n%s\n%s\n%s'
+                    product_description = (
+                        resource_data.data.code,
+                        resource_data.data.link,
+                        resource_data.data.name,
+                        resource_data.data.remark,
+                        resource_data.data.description)
+                    
+                    output.write(product_description_template % product_description)
+                else:
+                    output.write(data.data)
             
     
     
