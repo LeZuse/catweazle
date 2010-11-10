@@ -1,44 +1,47 @@
 import urllib, urllib2, re
 
-class Output(object):
-    pass
-
 class BaseGetter(object):
-    
-    def __init__(self, profile, code):              
+        
+    def __init__(self, profile, code): 
+        # whatever is in profile.settings dict
+        # will create a new attribute
         for i in profile.settings:
             setattr(self, i, profile.settings[i])
         
+        passman = urllib2.HTTPPasswordMgrWithDefaultRealm()
         
-    def parse_link(self):
-        post_data = urllib.urlencode(self.post_values)
-        request = urllib2.Request(self.search_url, post_data)	
-        response = urllib2.urlopen(request)
+        if hasattr(self, 'username'):
+            passman.add_password(None, self.base_url, self.username, self.password)
+              
+        authhandler = urllib2.HTTPBasicAuthHandler(passman)
+        opener = urllib2.build_opener(authhandler)
+        urllib2.install_opener(opener)	
+        self.opener = opener
+        self.search_url = self.base_url + self.search_url
+
+
+        
+    def parse_links(self):        
+        response = self.opener.open(self.search_url, data=self.post_values)
         the_page = response.read()
         response.close()      
         # potentialy dangerous, if there's more than one result
-        self.link = self.link_template % re.findall(self.link_pattern, the_page)[0]
-        self.code = re.findall(self.code_pattern, self.link)[0]
+        self.links = re.findall(self.link_pattern, the_page)
+  
         
 
-    def parse_description(self):
-        request = urllib2.Request(self.link)	
-        response = urllib2.urlopen(request)
-        the_page = response.read()
-        response.close()     
-        self.name = re.compile(self.name_pattern % self.code, re.MULTILINE).findall(the_page)[0]    
-        self.description = self.description_pattern.findall(the_page)[0]	
-
-
     def dump_product_data(self):
-        dump = Output()
+        dump = self.Output()
         dump.code = self.code
-        dump.link = self.link
+        dump.links = self.links
         dump.name = self.name
         dump.remark = self.name
         dump.description = self.description         
-        output = Output()
+        output = self.Output()
         output.data = dump
         output.name = ''
         output.format = self.output_format       
         return output
+        
+    class Output(object):
+        pass        

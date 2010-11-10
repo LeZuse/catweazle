@@ -20,6 +20,7 @@ setup(
 	zip_safe=False,
 	
 	install_requires=[
+	    'PIL',
 		'SQLAlchemy',
 		'titlecase', 
 		'Nose',

@@ -18,7 +18,16 @@ hama/cli/jimbo.py
 hama/cli/update_e_presenter.py
 hama/databaseutils/__init__.py
 hama/guppy/__init__.py
+hama/guppy/get_images.py
+hama/guppy/get_packaging_artwork.py
+hama/guppy/get_packshots.py
+hama/guppy/get_product_text.py
+hama/guppy/getter.py
+hama/guppy/profiles.py
+hama/guppy/resource_profile.py
 hama/imageutils/__init__.py
+hama/jimbo/__init__.py
+hama/jimbo/determine_supplier.py
 hama/pdfutils/__init__.py
 hama/textutils/__init__.py
 hama/textutils/capitalisation.py
