@@ -5,12 +5,15 @@ delimiter ;;
 CREATE TRIGGER au_log_products AFTER UPDATE ON catweazle2011.products FOR EACH ROW 
 BEGIN
 
+ DECLARE change_category INT(11);
+ SET change_category = 1;
+
   # product_name
   IF(NEW.product_name != old.product_name) THEN
     INSERT INTO catweazle2011.changelog 
-    (product, field_changed, old_value, new_value, made_by_user)
+    (product, field_changed, old_value, new_value, made_by_user, change_category)
     VALUES
-    (NEW.product_id, 'products.product_name', OLD.product_name, NEW.product_name, USER());
+    (NEW.product_id, 'products.product_name', OLD.product_name, NEW.product_name, USER(), change_category);
   END IF;
 
   # remark
@@ -18,7 +21,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.remark', OLD.remark, NEW.remark, USER());
+    (NEW.product_id, 'products.remark', OLD.remark, NEW.remark, USER(), change_category);
   END IF;
   
   # volume
@@ -26,7 +29,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.volume', OLD.volume, NEW.volume, USER());
+    (NEW.product_id, 'products.volume', OLD.volume, NEW.volume, USER(), change_category);
   END IF;
 
   # section
@@ -34,7 +37,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.presenter_section', OLD.presenter_section, NEW.presenter_section, USER());
+    (NEW.product_id, 'products.presenter_section', OLD.presenter_section, NEW.presenter_section, USER(), change_category);
   END IF;
 
   # page_number
@@ -42,7 +45,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.page_number', OLD.page_number, NEW.page_number, USER());
+    (NEW.product_id, 'products.page_number', OLD.page_number, NEW.page_number, USER(), change_category);
   END IF;
 
   # page_style
@@ -50,7 +53,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.page_style', OLD.page_style, NEW.page_style, USER());
+    (NEW.product_id, 'products.page_style', OLD.page_style, NEW.page_style, USER(), change_category);
   END IF;
 
   # desc_presenter
@@ -58,7 +61,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.desc_presenter', OLD.desc_presenter, NEW.desc_presenter, USER());
+    (NEW.product_id, 'products.desc_presenter', OLD.desc_presenter, NEW.desc_presenter, USER(), change_category);
   END IF;
 
   # desc_original
@@ -66,7 +69,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.desc_original', OLD.desc_original, NEW.desc_original, USER());
+    (NEW.product_id, 'products.desc_original', OLD.desc_original, NEW.desc_original, USER(), change_category);
   END IF;
 
   # is_new
@@ -74,7 +77,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.is_new', OLD.is_new, NEW.is_new, USER());
+    (NEW.product_id, 'products.is_new', OLD.is_new, NEW.is_new, USER(), change_category);
   END IF;
 
   # srp
@@ -82,7 +85,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.srp', OLD.srp, NEW.srp, USER());
+    (NEW.product_id, 'products.srp', OLD.srp, NEW.srp, USER(), change_category);
   END IF;
 
   # qty
@@ -90,7 +93,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.qty', OLD.qty, NEW.qty, USER());
+    (NEW.product_id, 'products.qty', OLD.qty, NEW.qty, USER(), change_category);
   END IF;
 
 
@@ -99,7 +102,7 @@ BEGIN
     INSERT INTO catweazle2011.changelog 
     (product, field_changed, old_value, new_value, made_by_user)
     VALUES
-    (NEW.product_id, 'products.price_style', OLD.price_style, NEW.price_style, USER());
+    (NEW.product_id, 'products.price_style', OLD.price_style, NEW.price_style, USER(), change_category);
   END IF;
 
 

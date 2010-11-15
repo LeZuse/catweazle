@@ -66,11 +66,14 @@ CREATE TABLE changelog (
     old_value           TEXT            NOT NULL                                                          COMMENT '',
     new_value           TEXT            NOT NULL                                                          COMMENT '',
     change_timestamp    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    COMMENT '',
-    made_by_user        VARCHAR(64)     DEFAULT NULL                                                      COMMENT '',    
+    made_by_user        VARCHAR(64)     DEFAULT NULL                                                      COMMENT '', 
+    change_category     INT(11)         NOT NULL                                                          COMMENT '',
     
     PRIMARY KEY  (change_id),
+    KEY change_category (change_category),
     KEY product_code (product),
-    CONSTRAINT changelog_alowed_codes FOREIGN KEY (product) REFERENCES products (product_id) ON DELETE NO ACTION ON UPDATE CASCADE
+    CONSTRAINT changelog_alowed_codes FOREIGN KEY (product) REFERENCES products (product_id) ON DELETE NO ACTION ON UPDATE CASCADE,
+    CONSTRAINT changelog_alowed_change_categories FOREIGN KEY (change_category) REFERENCES change_categories (change_category_id) ON DELETE NO ACTION ON UPDATE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -89,7 +92,7 @@ CREATE TABLE price_styles (
     price_style_id      INT(11)        NOT NULL AUTO_INCREMENT  COMMENT '',
     price_style_name    VARCHAR(16)    DEFAULT NULL             COMMENT '',    
     
-    PRIMARY KEY  (`price_style_id`),
+    PRIMARY KEY  (price_style_id),
     KEY price_style_id (price_style_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -135,8 +138,29 @@ CREATE TABLE sections (
 
 
 
+
+# ----------------------------------------------------------------------------
+CREATE TABLE change_categories (
+    change_category_id      INT(11)        NOT NULL AUTO_INCREMENT    COMMENT '',
+    change_category_name    VARCHAR(64)    DEFAULT NULL               COMMENT '',
+    
+    PRIMARY KEY  (change_category_id),
+    KEY change_category_id (change_category_id)
+    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
+
+INSERT INTO change_categories VALUES
+    ('1','product'),
+    ('2','price');
+
 
 INSERT INTO suppliers VALUES
     ('1','not specified'),
