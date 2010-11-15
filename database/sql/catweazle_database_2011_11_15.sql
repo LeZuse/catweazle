@@ -2,15 +2,17 @@ SET NAMES latin1;
 SET FOREIGN_KEY_CHECKS = 0;
 
 
-/* mysql -u root -p211573 catweazle2011 < 138CW.sql */
+/* mysql -u root -p**** catweazle2011 < catweazle_database.sql */
 
-DROP TABLE IF EXISTS `products`, `prices`, `changelog`, `page_styles`, `price_styles`, `price_types`, `volumes`, `sections`, `suppliers`;
+DROP TABLE IF EXISTS products, prices, changelog, page_styles, price_styles, price_types, volumes, sections, suppliers;
 
-DROP TRIGGER IF EXISTS `au_log_products`;
-DROP TRIGGER IF EXISTS `ai_log_products`;
-DROP TRIGGER IF EXISTS `au_log_prices`; /* FUNCTION price_type not implemented yet */
-DROP TRIGGER IF EXISTS `ai_log_prices`; /* FUNCTION price_type not implemented yet */
-DROP TRIGGER IF EXISTS `ad_log_prices`; /* FUNCTION price_type not implemented yet */
+DROP TRIGGER IF EXISTS au_log_products;
+DROP TRIGGER IF EXISTS ai_log_products;
+DROP TRIGGER IF EXISTS au_log_prices; /* FUNCTION price_type not implemented yet */
+DROP TRIGGER IF EXISTS ai_log_prices; /* FUNCTION price_type not implemented yet */
+DROP TRIGGER IF EXISTS ad_log_prices; /* FUNCTION price_type not implemented yet */
+DROP FUNCTION IF EXISTS price_type;
+
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
