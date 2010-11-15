@@ -1,5 +1,10 @@
 *.pyc
-*/documentation/build/*
+packages/*/documentation/build/*
+bin/*
+include/*
+lib/*
+.Python
+
 
 # Compiled source #
 ###################
