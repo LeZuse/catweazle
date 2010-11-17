@@ -8,7 +8,7 @@ mysql -u root -p211573 catweazle2011 < sql/triggers/au_log_products.sql
 mysql -u root -p211573 catweazle2011 < sql/triggers/ai_log_prices.sql
 mysql -u root -p211573 catweazle2011 < sql/triggers/au_log_prices.sql
 mysql -u root -p211573 catweazle2011 < sql/triggers/ad_log_prices.sql
-
+mysql -u root -p211573 catweazle2011 < sql/triggers/bu_products.sql
 
 mysql -u root -p211573 catweazle2011 < sql/functions/get_price_type.sql
 

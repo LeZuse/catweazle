@@ -1,3 +1,6 @@
+from hama.databaseutils import Product, session, products_table
+
+
 def main(codes):
     '''
     Finds supplier name & code for hama code

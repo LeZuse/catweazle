@@ -16,6 +16,7 @@ hama/cli/guppy_cli.py
 hama/cli/hamacase_cli.py
 hama/cli/jimbo.py
 hama/cli/update_e_presenter.py
+hama/database/__init__.py
 hama/databaseutils/__init__.py
 hama/guppy/__init__.py
 hama/guppy/get_images.py

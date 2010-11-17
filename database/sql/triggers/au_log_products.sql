@@ -80,6 +80,14 @@ BEGIN
     (NEW.product_id, 'products.is_new', OLD.is_new, NEW.is_new, USER(), change_category);
   END IF;
 
+  # is_nlp
+  IF(NEW.is_nlp != old.is_nlp) THEN
+    INSERT INTO catweazle2011.changelog 
+    (product, field_changed, old_value, new_value, made_by_user, change_category)
+    VALUES
+    (NEW.product_id, 'products.is_nlp', OLD.is_nlp, NEW.is_nlp, USER(), change_category);
+  END IF;
+  
   # srp
   IF(NEW.srp != old.srp) THEN
     INSERT INTO catweazle2011.changelog 

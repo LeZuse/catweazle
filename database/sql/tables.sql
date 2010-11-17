@@ -9,21 +9,24 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 # ----------------------------------------------------------------------------
 CREATE TABLE products (    
-    product_id           VARCHAR(16)      NOT NULL        COMMENT 'Hama code',
-    product_name         VARCHAR(1024)    DEFAULT ''      COMMENT 'Base product name',
-    remark               VARCHAR(1024)    DEFAULT ''      COMMENT 'Base name extension. Pretty much everything after the first comma',
-    volume               INT(11)          DEFAULT 1       COMMENT '',
-    presenter_section    INT(11)          DEFAULT 24      COMMENT '',
-    page_number          INT(11)          DEFAULT NULL    COMMENT '',
-    page_style           INT(11)          DEFAULT NULL    COMMENT 'InDesign numbering style',
-    is_new               INT(1)           DEFAULT 0       COMMENT 'Presenter NEW status',
-    srp                  DECIMAL(10,2)    DEFAULT NULL    COMMENT '',
-    qty                  INT(11)          DEFAULT 0       COMMENT '',
-    price_style          INT(11)          DEFAULT 1       COMMENT '',
-    desc_original        TEXT             DEFAULT ''      COMMENT '',
-    desc_presenter       TEXT             DEFAULT ''      COMMENT '',
-    supplier_code        VARCHAR(16)      NOT NULL        COMMENT '',
-    supplier             INT(11)          DEFAULT 1       COMMENT '',   
+    product_id           VARCHAR(16)      NOT NULL                            COMMENT 'Hama code',
+    product_name         VARCHAR(1024)    DEFAULT ''                          COMMENT 'Base product name',
+    remark               VARCHAR(1024)    DEFAULT ''                          COMMENT 'Base name extension. Pretty much everything after the first comma',
+    volume               INT(11)          DEFAULT 1                           COMMENT '',
+    presenter_section    INT(11)          DEFAULT 24                          COMMENT '',
+    page_number          INT(11)          DEFAULT NULL                        COMMENT '',
+    page_style           INT(11)          DEFAULT NULL                        COMMENT 'InDesign numbering style',
+    is_new               INT(1)           DEFAULT 0                           COMMENT 'Presenter NEW status',
+    is_new_timestamp     TIMESTAMP        NULL                                COMMENT '',
+    is_nlp               INT(1)           DEFAULT 0                           COMMENT 'Presenter NLP status',
+    is_nlp_timestamp     TIMESTAMP        NULL                                COMMENT '',
+    srp                  DECIMAL(10,2)    DEFAULT NULL                        COMMENT '',
+    qty                  INT(11)          DEFAULT 0                           COMMENT '',
+    price_style          INT(11)          DEFAULT 1                           COMMENT '',
+    desc_original        TEXT             DEFAULT ''                          COMMENT '',
+    desc_presenter       TEXT             DEFAULT ''                          COMMENT '',
+    supplier_code        VARCHAR(16)      NOT NULL                            COMMENT '',
+    supplier             INT(11)          DEFAULT 1                           COMMENT '',   
     
     PRIMARY KEY  (product_id),
     KEY volume (volume),
@@ -59,15 +62,16 @@ CREATE TABLE prices (
 
 
 # ----------------------------------------------------------------------------  
-CREATE TABLE changelog (        
-    change_id           INT(11)         NOT NULL AUTO_INCREMENT                                           COMMENT '',
-    product             VARCHAR(16)     NOT NULL                                                          COMMENT '',
-    field_changed       VARCHAR(128)    NOT NULL                                                          COMMENT '',
-    old_value           TEXT            NOT NULL                                                          COMMENT '',
-    new_value           TEXT            NOT NULL                                                          COMMENT '',
-    change_timestamp    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    COMMENT '',
-    made_by_user        VARCHAR(64)     DEFAULT NULL                                                      COMMENT '', 
-    change_category     INT(11)         NOT NULL                                                          COMMENT '',
+CREATE TABLE changelog (            
+    change_id           INT(11)         NOT NULL AUTO_INCREMENT               COMMENT '',
+    product             VARCHAR(16)     NOT NULL                              COMMENT '',
+    field_changed       VARCHAR(128)    NOT NULL                              COMMENT '',
+    old_value           TEXT            NOT NULL                              COMMENT '',
+    new_value           TEXT            NOT NULL                              COMMENT '',
+    change_timestamp    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP    COMMENT '',
+    made_by_user        VARCHAR(64)     DEFAULT NULL                          COMMENT '',
+    change_category     INT(11)         NOT NULL                              COMMENT '',
+    is_synchronised     INT(1)          DEFAULT 0                             COMMENT '',
     
     PRIMARY KEY  (change_id),
     KEY change_category (change_category),
@@ -75,6 +79,33 @@ CREATE TABLE changelog (
     CONSTRAINT changelog_alowed_codes FOREIGN KEY (product) REFERENCES products (product_id) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT changelog_alowed_change_categories FOREIGN KEY (change_category) REFERENCES change_categories (change_category_id) ON DELETE NO ACTION ON UPDATE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# ----------------------------------------------------------------------------
+CREATE TABLE product_attributes (
+    product_attribute_id      INT(11)        NOT NULL AUTO_INCREMENT    COMMENT '',
+    product_attribute_name    VARCHAR(64)    NOT NULL                   COMMENT '',
+    product_attribute_type    INT(11)        NOT NULL                   COMMENT '',  
+    
+    PRIMARY KEY  (product_attribute_id),
+    KEY product_attribute_type (product_attribute_type),
+    CONSTRAINT alowed_product_attribute_type FOREIGN KEY (product_attribute_type) REFERENCES product_attribute_types (product_attribute_type_id) ON DELETE NO ACTION ON UPDATE CASCADE
+    ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+# ----------------------------------------------------------------------------
+CREATE TABLE attributes (
+    attribute_id            INT(11)        NOT NULL AUTO_INCREMENT                                           COMMENT '',
+    product_id              VARCHAR(16)    NOT NULL                                                          COMMENT 'Hama code',
+    attribute_timestamp     TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    COMMENT '',
+    attribute_value         VARCHAR(128)   NOT NULL                                                          COMMENT '',   
+    
+    PRIMARY KEY  USING BTREE (product_id, attribute_id),
+    KEY product_id (product_id),
+    CONSTRAINT attributes_alowed_codes FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE NO ACTION ON UPDATE CASCADE,
+    CONSTRAINT alowed_attributes FOREIGN KEY (attribute_id) REFERENCES product_attributes (product_attribute_id) ON DELETE NO ACTION ON UPDATE CASCADE
+    ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
 
 
 # ----------------------------------------------------------------------------
@@ -149,13 +180,35 @@ CREATE TABLE change_categories (
     ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 
+# ----------------------------------------------------------------------------
+CREATE TABLE product_attribute_types (
+    product_attribute_type_id      INT(11)        NOT NULL AUTO_INCREMENT    COMMENT '',
+    product_attribute_type_name    VARCHAR(64)    NOT NULL                   COMMENT '',
+    
+    PRIMARY KEY  (product_attribute_type_id)
 
+    ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 
 
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
+
+INSERT INTO product_attributes VALUES
+    ('1','available', 5),
+    ('2','low stock', 1),
+    ('3', 'out of stock', 1),
+    ('4', 'back in stock', 1);
+
+
+INSERT INTO product_attribute_types VALUES
+    ('1','boolean'),
+    ('2','integer'),
+    ('3', 'string'),
+    ('4', 'decimal'),
+    ('5', 'date');
+
 
 INSERT INTO change_categories VALUES
     ('1','product'),
