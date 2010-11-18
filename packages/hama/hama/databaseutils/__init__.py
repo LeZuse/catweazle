@@ -2,6 +2,11 @@ from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, 
 from sqlalchemy.orm import mapper, sessionmaker, joinedload
 
 from decimal import Decimal
+ 
+
+
+
+
 
 
 engine = create_engine('mysql://python:211573@localhost:3306/catweazle2011?charset=utf8', echo=False)
@@ -18,7 +23,7 @@ prices_table = Table('prices', metadata, autoload=True)
 r = report_table = Table('product_report', metadata, autoload=True)
 
 
-# _table = Table('', metadata, autoload=True)
+
 
 
 

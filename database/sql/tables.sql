@@ -18,8 +18,6 @@ CREATE TABLE products (
     page_style           INT(11)          DEFAULT NULL                        COMMENT 'InDesign numbering style',
     is_new               INT(1)           DEFAULT 0                           COMMENT 'Presenter NEW status',
     is_new_timestamp     TIMESTAMP        NULL                                COMMENT '',
-    is_nlp               INT(1)           DEFAULT 0                           COMMENT 'Presenter NLP status',
-    is_nlp_timestamp     TIMESTAMP        NULL                                COMMENT '',
     srp                  DECIMAL(10,2)    DEFAULT NULL                        COMMENT '',
     qty                  INT(11)          DEFAULT 0                           COMMENT '',
     price_style          INT(11)          DEFAULT 1                           COMMENT '',
@@ -52,6 +50,8 @@ CREATE TABLE prices (
     price_type_id    INT(11)          DEFAULT '1'    COMMENT '',
     minimum_qty      INT(11)          DEFAULT '1'    COMMENT '',
     price_value      DECIMAL(10,2)    NOT NULL       COMMENT '',
+    is_nlp           INT(1)           DEFAULT 0                           COMMENT 'Presenter NLP status',
+    is_nlp_timestamp TIMESTAMP        NULL                                COMMENT '',    
     
     PRIMARY KEY  USING BTREE (product_id, price_type_id, minimum_qty),
     KEY price_type_id (price_type_id),

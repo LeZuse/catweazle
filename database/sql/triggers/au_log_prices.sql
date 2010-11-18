@@ -35,8 +35,8 @@ CREATE TRIGGER au_log_prices AFTER UPDATE ON catweazle2011.prices FOR EACH ROW B
     VALUES
     (NEW.product_id, CONCAT(field_changed_name, ' (price_value)'), OLD.price_value, NEW.price_value, USER(), change_category);
   
-    IF(NEW.price_value < old.price_value) THEN
-        UPDATE catweazle2011.products SET is_nlp = 1 WHERE product_id = NEW.product_id;
+    IF(NEW.price_value < old.price_value) THEN 
+        UPDATE catweazle2011.prices SET is_nlp = 1 WHERE product_id = NEW.product_id;
     END IF;
     
   END IF;
