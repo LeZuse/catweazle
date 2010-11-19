@@ -35,9 +35,9 @@
 '''
 
 
-#from hama.cli.hamacase_cli import hama_case_cli
-#from hama.cli.guppy_cli import guppy_cli
-#from hama.cli.eugene import eugene
-#from hama.cli.update_e_presenter import update_e_presenter
-#from hama.cli.grimble import grimble
-#from hama.cli.jimbo import jimbo
+from hama.cli.hamacase_cli import hama_case_cli
+from hama.cli.guppy_cli import guppy_cli
+from hama.cli.eugene import eugene
+from hama.cli.update_e_presenter import update_e_presenter
+from hama.cli.grimble import grimble
+from hama.cli.jimbo import jimbo
