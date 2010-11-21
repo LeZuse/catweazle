@@ -24,20 +24,20 @@ CREATE TABLE products (
     desc_original        TEXT             DEFAULT ''                          COMMENT '',
     desc_presenter       TEXT             DEFAULT ''                          COMMENT '',
     supplier_code        VARCHAR(16)      NOT NULL                            COMMENT '',
-    supplier             INT(11)          DEFAULT 1                           COMMENT '',   
+    supplier_id            INT(11)          DEFAULT 1                           COMMENT '',   
     
     PRIMARY KEY  (product_id),
     KEY volume (volume),
     KEY presenter_section (presenter_section),
     KEY price_style (price_style),
     KEY page_style (page_style),
-    KEY supplier (supplier),
+    KEY supplier_id (supplier_id),
     
     CONSTRAINT alowed_volumes FOREIGN KEY (volume) REFERENCES volumes (volume_id) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT alowed_sections FOREIGN KEY (presenter_section) REFERENCES sections (section_id) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT alowed_price_styles FOREIGN KEY (price_style) REFERENCES price_styles (price_style_id) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT alowed_page_styles FOREIGN KEY (page_style) REFERENCES page_styles (page_style_id) ON DELETE NO ACTION ON UPDATE CASCADE,
-    CONSTRAINT alowed_suppliers FOREIGN KEY (supplier) REFERENCES suppliers (supplier_id) ON DELETE NO ACTION ON UPDATE CASCADE
+    CONSTRAINT alowed_suppliers FOREIGN KEY (supplier_id) REFERENCES suppliers (supplier_id) ON DELETE NO ACTION ON UPDATE CASCADE
     
     ) ENGINE=InnoDB
       DEFAULT CHARSET=utf8
@@ -50,8 +50,8 @@ CREATE TABLE prices (
     price_type_id    INT(11)          DEFAULT '1'    COMMENT '',
     minimum_qty      INT(11)          DEFAULT '1'    COMMENT '',
     price_value      DECIMAL(10,2)    NOT NULL       COMMENT '',
-    is_nlp           INT(1)           DEFAULT 0                           COMMENT 'Presenter NLP status',
-    is_nlp_timestamp TIMESTAMP        NULL                                COMMENT '',    
+    is_nlp           INT(1)           DEFAULT 0      COMMENT 'Presenter NLP status',
+    is_nlp_timestamp TIMESTAMP        NULL           COMMENT '',    
     
     PRIMARY KEY  USING BTREE (product_id, price_type_id, minimum_qty),
     KEY price_type_id (price_type_id),

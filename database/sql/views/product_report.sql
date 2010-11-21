@@ -37,7 +37,7 @@ FROM        products
             JOIN sections ON sections.section_id = products.presenter_section
             JOIN page_styles ON page_styles.page_style_id = products.page_style
             JOIN price_styles ON price_styles.price_style_id = products.price_style
-            JOIN suppliers ON suppliers.supplier_id = products.supplier    
+            JOIN suppliers ON suppliers.supplier_id = products.supplier_id    
             LEFT JOIN prices ON prices.product_id = products.product_id
             LEFT JOIN price_types ON price_types.price_type_id = prices.price_type_id
 

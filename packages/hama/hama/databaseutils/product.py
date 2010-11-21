@@ -1,10 +1,5 @@
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, ForeignKey, join
-from sqlalchemy.orm import mapper, sessionmaker, joinedload
- 
-engine = create_engine('mysql://python:211573@localhost:3306/catweazle2011?charset=utf8', echo=False)
-metadata = MetaData(engine)
-Session = sessionmaker(bind=engine)
-session = Session()
+from sqlalchemy import orm
+
 
 class PricesContainer(object):
     def __init__(self, parent):
@@ -40,48 +35,20 @@ class PricesContainer(object):
         return iter([self.container[i] for i in keys])
 
 class Product(object):
+    @orm.reconstructor
+    def init_on_load(self):
+        self.prices = PricesContainer(self.product_id)
+
     def __repr__(self):
         return (u'<%s: %s, %s>' % (self.__class__.__name__, self.product_id, self.product_name)).encode('utf8')
 
+    def __get_section (self):
+        return self.parent.sections[self.presenter_section]
         
-class Price(object):
-    def __init__(self, product_id, price_type_id, minimum_qty, price_value):
-        self.product_id = product_id
-        self.price_type_id = price_type_id
-        self.minimum_qty = minimum_qty
-        self.price_value = price_value
-
-    def delete(self):
-        session.delete(self)
-
-    def __repr__(self):
-        return '<%s: %s@%s %s>' % (self.__class__.__name__, self.price_type_id, self.minimum_qty, self.price_value)
-
+    section = property(fget=__get_section)
         
-class Items(object):  
-    def __init__(self):     
-        products_table = Table('products', metadata, autoload=True)
-        prices_table = Table('prices', metadata, autoload=True)
-        mapper(Product, products_table) 
-        mapper(Price, prices_table)
+    def __get_supplier (self):
+        return self.parent.suppliers[self.supplier_id].name
         
-        products = session.query(Product).all()
-        price_query = session.query(Price)
- 
-        for product in products:
-            prices = price_query.filter(Price.product_id == product.product_id).all()
-            product.prices = PricesContainer(product)
-            for price in prices:              
-                product.prices.append(price)
-    
-            self.__dict__[product.product_id] = product    
-    
-    def __getitem__(self, key):
-        return self.__dict__[key]
-        
-    def keys(self):
-        return self.__dict__.keys()
+    supplier = property(fget=__get_supplier)
 
-
-i = Items()
-a = i['00004371']

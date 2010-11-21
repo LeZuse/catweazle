@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-from hama.databaseutils import session, report_table
+from hama.databaseutils import Database
 
 def main(codes):
     '''
     Finds supplier name & code for hama code
     This function wouldn't be neccessary if I could access IFS programmatically
 
-    ..todo: replace placeholder with real code in hama.jimbo.determine_supplier
     '''
 
     class SupplierInfo(object):
@@ -17,18 +16,18 @@ def main(codes):
         def __repr__(self):
             return '(<SupplierInfo> %s, %s)' % (self.supplier, self.supplier_code)
 
-
-    not_resolved_codes = list(codes)
+    database = Database()
     resolved_codes = {}
 
-    query = report_table.select().where(report_table.c.Code.in_(codes))
-    result = session.execute(query)
-
-    for i in result:
-        resolved_codes[i.Code] = SupplierInfo(i['Supplier Code'], i['Supplier'])
-        not_resolved_codes.remove(i.Code)
-    
-    for i in not_resolved_codes:
-        resolved_codes[i] = SupplierInfo(None, None)
+    for code in codes:
+        try:
+            product = database[code]
+            supplier_code = product.supplier_code
+            supplier_name = product.supplier
+        except KeyError:
+            supplier_code = None
+            supplier_name = None
+        
+        resolved_codes[code] = SupplierInfo(supplier_code, supplier_name)
       
     return resolved_codes
