@@ -2,7 +2,7 @@ import urllib2, re, os
 import pdb
 from profiles import profiles
 from getter import BaseGetter
-from PIL import Image
+#from PIL import Image
 from cStringIO import StringIO
 
 class HamaImagesGetter(BaseGetter):
@@ -69,8 +69,8 @@ class HamaImagesGetter(BaseGetter):
         image_data = page.read()
         page.close()
         
-        image_data = Image.open(StringIO(image_data))
-        print 'X: %s Y: %s' % image_data.size
+#        image_data = Image.open(StringIO(image_data))
+#        print 'X: %s Y: %s' % image_data.size
 
 def main(code, supplier):
     

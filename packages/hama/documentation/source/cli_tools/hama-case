@@ -42,7 +42,7 @@ You can override or add dictionary entries via -d switch followed by list of cus
 
 You can get quick help with the -h switch
 
-.. program-output:: ../../../bin/hama-case -h
+.. program-output:: hama-case -h
    :prompt:
    
 -----

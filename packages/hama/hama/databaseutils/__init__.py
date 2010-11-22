@@ -91,7 +91,8 @@ class Database(object):
         for product in products:
             prices = price_query.filter(Price.product_id == product.product_id).all()
             
-            for price in prices:              
+            for price in prices:
+                price.parent = product           
                 product.prices.append(price)
             
             product.parent = self

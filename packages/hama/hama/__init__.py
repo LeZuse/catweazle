@@ -1,5 +1,6 @@
 '''
-``hama`` is the top level module of the whole package. It also imports all entry-point functions for easier access from the setup.py script
+``hama`` is the top level module of the whole package. It also imports all 
+entry-point functions for easier access from the setup.py script
 
 ==========
 
