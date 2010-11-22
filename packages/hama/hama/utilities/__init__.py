@@ -2,4 +2,4 @@
 .. todo:: docstring for utilities
 '''
 
-from clioptions import parse_arguments
+from hama.utilities.clioptions import parse_arguments
