@@ -123,3 +123,5 @@ class Database(object):
     def __repr__(self):
         return '<%s: %s>' % (self.__class__.__name__, len(self.container))
 
+    def __del__(self):
+        print 'AHOJ'
