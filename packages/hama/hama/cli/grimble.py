@@ -1,3 +1,7 @@
+"""
+# TODO write grimble docstring!
+"""
+
 def grimble():
     '''\
 Entry point for :ref:`grimble <cli_grimble>`

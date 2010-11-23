@@ -1,16 +1,39 @@
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, ForeignKey, join
-from sqlalchemy.orm import mapper, sessionmaker, joinedload
+"""
+TODO docstring
+"""
+
+from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
+from sqlalchemy.orm import mapper, sessionmaker
 
 from decimal import Decimal
 
-from product import Product, PricesContainer
-from price import Price
+from hama.databaseutils.product import Product, PricesContainer
+from hama.databaseutils.price import Price
 
+
+# TODO store connenction details somewhere else
+
+ENGINE = 'mysql'
+USER = 'python'
+PASSWORD = '211573'
+HOST = 'localhost'
+DATABASE = 'catweazle2011'
+
+
+
+CONNECTION_STRING = '%(e)s://%(u)s:%(p)s@%(h)s:3306/%(d)s?charset=utf8'
+CONNECTION_STRING = CONNECTION_STRING % {
+    'e': ENGINE,
+    'u': USER, 
+    'p': PASSWORD,
+    'h': HOST,
+    'd': DATABASE
+}
 
 class Database(object):
 
          
-    def __init__(self, connection_string='mysql://python:211573@localhost:3306/catweazle2011?charset=utf8', echo=False):
+    def __init__(self, connection_string=CONNECTION_STRING, echo=False):
         class Container(object):
             pass       
         
@@ -79,17 +102,19 @@ class Database(object):
         
 
         # Build the object
-        # This is achieved by iterating through all products, finding any relevant
-        # info related to them and putting it into right container.
+        # This is achieved by iterating through all products, finding any 
+        # relevant info related to them and putting it into right container.
         #
         # It would be probably more elegant to do this via sqlalchemy
-        # relationships, but I couldn't find enough time to get my head around it
+        # relationships, but I couldn't find enough time to get my 
+        # head around it
         #
         # NB: each ``product'' is an instance of hama.databaseutils.Product
         self.container = {}
         
         for product in products:
-            prices = price_query.filter(Price.product_id == product.product_id).all()
+            condition = Price.product_id == product.product_id
+            prices = price_query.filter(condition).all()
             
             for price in prices:
                 price.parent = product           

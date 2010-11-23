@@ -1,7 +1,13 @@
+"""
+# TODO write guppy docstring!
+"""
+
 import sys
 
 from hama.utilities.clioptions import parse_arguments
 from hama.guppy import guppy
+
+VERSION = '0.1'
 
 def guppy_cli():
     '''\
@@ -10,7 +16,6 @@ def guppy_cli():
     .. todo::
        Write ``guppy_cli`` docstring
         '''
-    VERSION = '0.1'
     
     cli_options = {
         'description': '''Guppy gets resources for given codes''',
