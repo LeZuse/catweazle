@@ -1,10 +1,10 @@
+"""TODO docstring"""
 # -*- coding: utf-8 -*-
 
-import sys
 import re
 
 from titlecase import titlecase
-from capitalisation import capitalisation_dictionary
+from hama.textutils.capitalisation import CAPITALISATION_DICTIONARY
 
 def hama_case(text, custom_capitalisation=[]):
     '''
@@ -27,9 +27,9 @@ def hama_case(text, custom_capitalisation=[]):
     for word in custom_capitalisation:
         additional_dictionary[word.capitalize()] = word 
     
-    capitalisation_dictionary.update(additional_dictionary)
+    CAPITALISATION_DICTIONARY.update(additional_dictionary)
     
-    for key, value in capitalisation_dictionary.iteritems():
+    for key, value in CAPITALISATION_DICTIONARY.iteritems():
         pattern = re.compile(r'\b%s\b' % key, re.IGNORECASE)
         text = pattern.sub(value, text)
         text = text[0].capitalize() + text[1:]

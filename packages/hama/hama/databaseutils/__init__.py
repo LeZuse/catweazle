@@ -31,10 +31,10 @@ CONNECTION_STRING = CONNECTION_STRING % {
 }
 
 class Database(object):
-
-         
+    """ TODO docstring """         
     def __init__(self, connection_string=CONNECTION_STRING, echo=False):
         class Container(object):
+            """ TODO docstring """
             pass       
         
         # Boilerplate
@@ -131,9 +131,11 @@ class Database(object):
         return self.container[key]
         
     def keys(self):
+        """ TODO docstring """
         return self.container.keys()
         
     def commit(self):
+        """ TODO docstring """
         self.session.commit()
         
     def __contains__(self, code):

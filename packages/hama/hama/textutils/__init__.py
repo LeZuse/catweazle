@@ -3,5 +3,5 @@
 '''
 
 
-from hamacase import hama_case
+from hama.textutils.hamacase import hama_case
 

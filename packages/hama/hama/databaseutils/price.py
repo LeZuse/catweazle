@@ -4,7 +4,7 @@
 
 class Price(object):
     '''
-    Price
+    TODO docstring
     '''
     def __init__(self, product_id, price_type_id, minimum_qty, price_value):
         self.product_id = product_id
@@ -14,10 +14,12 @@ class Price(object):
         self.parent = None
 
     def delete(self):
-        '''removes the price from the product'''
+        '''Remove the price from the product.'''
         self.parent.parent.session.delete(self)
 
     def __get_price_type (self):
+        """TODO docstring
+        """
         return self
         
     price_type = property(fget=__get_price_type)

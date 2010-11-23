@@ -1,6 +1,7 @@
+""" TODO docstring """
 # -*- coding: utf-8 -*-
 
-capitalisation_dictionary = {
+CAPITALISATION_DICTIONARY = {
     # units
     'ghz': 'GHz',
     'kb': 'KB',
@@ -43,7 +44,6 @@ capitalisation_dictionary = {
     'ieee': 'IEEE',
     'ir': 'IR',
     'lcd': 'LCD',
-    'mah': 'mAh',
     'mc': 'MC',
     'mmc': 'MMC',
     'nimh': 'NiMH',

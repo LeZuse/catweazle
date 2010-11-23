@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+"""TODO docstring"""
 from hama.databaseutils import Database
 
-def main(codes):
+def determine_supplier(codes):
     '''
     Finds supplier name & code for hama code
     This function wouldn't be neccessary if I could access IFS programmatically
@@ -9,6 +9,7 @@ def main(codes):
     '''
 
     class SupplierInfo(object):
+        """TODO docstring"""
         def __init__(self, supplier_code, supplier):
             self.supplier_code = supplier_code
             self.supplier = supplier

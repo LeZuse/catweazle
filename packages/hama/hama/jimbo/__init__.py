@@ -3,33 +3,32 @@
 '''
 
 
-from determine_supplier import main as determine_supplier
+from hama.jimbo.determine_supplier import determine_supplier
 
 
-'''
-product 
-price
 
-sync in changelog
+# TODO product 
+# TODO price
 
-import products
-import prices
-remove prices
-reomve from presenter
-move to hs
+# TODO sync in changelog
 
-HS sheet
-new product(s)
-inv pricing
+# TODO import products
+# TODO import prices
+# TODO remove prices
+# TODO reomve from presenter
+# TODO move to hs
 
-'''
+# TODO HS sheet
+# TODO new product(s)
+# TODO inv pricing
 
 
-'''
-product report
-pricing report
-attributets report
-changelog report (incl. pages)
 
-incomplete items report
-'''
+
+# TODO product report
+# TODO pricing report
+# TODO attributets report
+# TODO changelog report (incl. pages)
+
+# TODO incomplete items report
+
