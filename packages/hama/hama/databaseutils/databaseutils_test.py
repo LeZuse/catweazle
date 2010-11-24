@@ -8,10 +8,7 @@ from decimal import Decimal
 from hama.databaseutils import Database
 from sqlalchemy.orm import clear_mappers
 class UtilsTests(unittest.TestCase):
-
-    '''s'''
     def test_ddbb(self):
-        '''s'''
         database = Database()
         products = [
             ('00101300', 

@@ -16,9 +16,7 @@ hama/cli/guppy_cli.py
 hama/cli/hamacase_cli.py
 hama/cli/jimbo.py
 hama/cli/update_e_presenter.py
-hama/database/__init__.py
 hama/databaseutils/__init__.py
-hama/databaseutils/__init___test.py
 hama/databaseutils/databaseutils_test.py
 hama/databaseutils/price.py
 hama/databaseutils/product.py
@@ -32,7 +30,8 @@ hama/guppy/profiles.py
 hama/guppy/resource_profile.py
 hama/imageutils/__init__.py
 hama/jimbo/__init__.py
-hama/jimbo/determine_supplier.py
+hama/jimbo/determinesupplier.py
+hama/jimbo/determinesupplier_test.py
 hama/pdfutils/__init__.py
 hama/textutils/__init__.py
 hama/textutils/capitalisation.py

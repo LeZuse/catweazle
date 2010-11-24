@@ -1,12 +1,17 @@
 """TODO docstring"""
-#!/usr/bin/python
 
 import unittest
 
 from hama.textutils.hamacase import hama_case
 
 class UtilsTests(unittest.TestCase):
-    """TODO docstring"""
+    """TODO docstring a"""
     def test_hama_case(self):
-        """TODO docstring"""
-        self.assertEquals(hama_case('ee'), 'Ee')
+        """Capitalisation"""
+        cases = {
+            'ee': 'Ee',
+            'seven or more': 'Seven or More'
+            }
+        
+        for key in cases:
+            self.assertEquals(hama_case(key), cases[key])

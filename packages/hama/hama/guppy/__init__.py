@@ -6,10 +6,10 @@ import os
 import pdb
 
 from hama.jimbo import determine_supplier
-from get_images import main as get_images
-from get_packshots import main as get_packshots
-from get_packaging_artwork import main as get_packaging_artwork
-from get_product_text import main as get_product_text
+from hama.guppy.get_images import main as get_images
+from hama.guppy.get_packshots import main as get_packshots
+from hama.guppy.get_packaging_artwork import main as get_packaging_artwork
+from hama.guppy.get_product_text import main as get_product_text
 
 def guppy(options, args):
     '''
@@ -18,7 +18,7 @@ def guppy(options, args):
     
     # pdb.set_trace()
     
-    CWD = os.getcwd()
+    working_directory = os.getcwd()
     codes = determine_supplier(args)
     
 #     for i in options:
@@ -42,7 +42,10 @@ def guppy(options, args):
             
             resource_data = resource_request_handler(supplier_code, supplier)
             
-#             output_file = '%s/%s/%s%s.%s' % (CWD, request, code[0], resource_data.name, resource_data.format)
+            # TODO finish
+            
+#             output_file = '%s/%s/%s%s.%s' % (working_directory, request, code[0], 
+#             resource_data.name, resource_data.format)
 #             
 #             with open(output_file, 'w') as output:
 #                 if request == 'get_product_text':
@@ -54,7 +57,8 @@ def guppy(options, args):
 #                         resource_data.data.remark,
 #                         resource_data.data.description)
 #                     
-#                     output.write(product_description_template % product_description)
+#                     output.write(product_description_template % \
+#                       product_description)
 #                 else:
 #                     output.write(data.data)
             

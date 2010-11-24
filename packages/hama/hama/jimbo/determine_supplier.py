@@ -1,4 +1,6 @@
 """TODO docstring"""
+
+from sqlalchemy.orm import clear_mappers
 from hama.databaseutils import Database
 
 def determine_supplier(codes):
@@ -6,6 +8,9 @@ def determine_supplier(codes):
     Finds supplier name & code for hama code
     This function wouldn't be neccessary if I could access IFS programmatically
 
+    >>> from hama.jimbo import determine_supplier
+    >>> 1 + 1
+    2
     '''
 
     class SupplierInfo(object):
@@ -30,5 +35,7 @@ def determine_supplier(codes):
             supplier_name = None
         
         resolved_codes[code] = SupplierInfo(supplier_code, supplier_name)
+        
+        clear_mappers()
       
     return resolved_codes
