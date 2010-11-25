@@ -3,42 +3,27 @@
 from sqlalchemy import orm
 from hama.databaseutils.price import Price
 
-class PricesContainer(object):
+class PricesContainer(dict):
     """ TODO docstring """
     def __init__(self, parent):
         self.parent = parent
-        self.container = {}
 
-    
-    def __getitem__(self, key):
-        return self.container[key]
-
-    def __setitem__(self, key, value):
-        self.container[key] = value
-        
     def add(self, price_type_id, qty, price_value):
         """ TODO docstring """
-        key = (int(price_type_id), int(qty))
+        key = (price_type_id, qty)
         price = Price(self.parent.product_id, price_type_id, qty, price_value)
-        assert key not in self.container, 'error!'
-        self.container[key] = price
+        assert key not in self, 'error!'
+        self[key] = price
         self.parent.parent.session.add(price)
+
 
     def append(self, price):
         """ TODO docstring """
-        key = (int(price.price_type_id), int(price.minimum_qty))
-        assert key not in self.container, 'error!'
-        self.container[key] = price
+        key = (price.price_type_id, price.minimum_qty)
+        assert key not in self, 'error!'
+        self[key] = price
 
-    def __len__(self):
-        return len(self.container)
-
-    def __repr__(self):
-        return '<%s: %s>' % (self.__class__.__name__, len(self.container))
         
-    def __iter__(self):
-        keys = sorted(self.container.keys())
-        return iter([self.container[i] for i in keys])
 
 class Product(object):
     """ TODO docstring """

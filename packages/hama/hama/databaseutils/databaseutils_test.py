@@ -13,8 +13,7 @@ class DatabaseTests(unittest.TestCase):
     def __del__(self):
         clear_mappers()
     
-    def qqq_test(self):
-        self.assertEquals(1 + 1, 2)
+
     
     def test_db_read(self):
         """ Tests for the Database class """
@@ -33,8 +32,8 @@ class DatabaseTests(unittest.TestCase):
             self.assertEquals(database[product_code].product_name, product_name)
             
 
-class DatabasePriceTests(unittest.TestCase):
-    """ Tests for price manipulations """
+#class DatabasePriceTests(unittest.TestCase):
+#    """ Tests for price manipulations """
     
     def test_db_add_price(self):
         # database = Database()
