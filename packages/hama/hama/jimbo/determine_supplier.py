@@ -3,6 +3,8 @@
 from sqlalchemy.orm import clear_mappers
 from hama.databaseutils import Database
 
+database = Database()
+
 def determine_supplier(codes):
     '''
     Finds supplier name & code for hama code
@@ -22,7 +24,7 @@ def determine_supplier(codes):
         def __repr__(self):
             return '(<SupplierInfo> %s, %s)' % (self.supplier, self.supplier_code)
 
-    database = Database()
+    
     resolved_codes = {}
 
     for code in codes:
@@ -36,6 +38,8 @@ def determine_supplier(codes):
         
         resolved_codes[code] = SupplierInfo(supplier_code, supplier_name)
         
-        clear_mappers()
+        # clear_mappers()
       
     return resolved_codes
+
+clear_mappers()

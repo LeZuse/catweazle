@@ -43,8 +43,7 @@ class Database(object):
         # Boilerplate
         engine = create_engine(connection_string, echo=echo)
         metadata = MetaData(engine)
-        Session = sessionmaker(bind=engine)
-        self.session = session = Session()     
+        self.session = sessionmaker(bind=engine)()     
         
         
        # Database tables we're interested in
@@ -85,7 +84,7 @@ class Database(object):
                     
         
         query = tables['sections'].select()
-        sections = session.execute(query).fetchall()        
+        sections = self.session.execute(query).fetchall()        
         self.sections = {}
         
         for section in sections:
@@ -95,7 +94,7 @@ class Database(object):
             self.sections[section_id].name = section[2]
             
         query = tables['suppliers'].select()
-        suppliers = session.execute(query).fetchall()        
+        suppliers = self.session.execute(query).fetchall()        
         self.suppliers = {}
         
         for supplier in suppliers:
