@@ -1,4 +1,5 @@
 """TODO docstring"""
+import re, urllib2
 
 class BaseGetter(object):
     """TODO docstring"""        

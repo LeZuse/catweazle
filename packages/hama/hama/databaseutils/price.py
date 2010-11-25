@@ -18,8 +18,8 @@ class Price(object):
         self.parent.parent.session.delete(self)
 
     def __get_price_type (self):
-        """TODO docstring
-        """
+        """TODO docstring"""
+        # TODO replace placeholder
         return self
         
     price_type = property(fget=__get_price_type)

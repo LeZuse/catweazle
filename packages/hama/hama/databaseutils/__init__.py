@@ -32,10 +32,13 @@ CONNECTION_STRING = CONNECTION_STRING % {
 
 class Database(object):
     """ TODO docstring """         
-    def __init__(self, connection_string=CONNECTION_STRING, echo=False):
+    def __init__(self, connection_string=None, echo=False):
         class Container(object):
             """ TODO docstring """
             pass       
+        
+        # XXX temporary fix before I sort out the connection details
+        connection_string = CONNECTION_STRING
         
         # Boilerplate
         engine = create_engine(connection_string, echo=echo)
@@ -150,6 +153,3 @@ class Database(object):
 
     def __repr__(self):
         return '<%s: %s>' % (self.__class__.__name__, len(self.container))
-
-    def __del__(self):
-        print 'AHOJ'

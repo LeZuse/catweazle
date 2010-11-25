@@ -1,4 +1,8 @@
-""" TODO docstring """
+""" This module contains basic capitalisation dictionary
+
+It only exists, because it is more convenient to store
+them neatly in separate file.
+ """
 # -*- coding: utf-8 -*-
 
 CAPITALISATION_DICTIONARY = {

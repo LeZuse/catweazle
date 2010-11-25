@@ -7,13 +7,12 @@ entry-point functions for easier access from the setup.py script
 .. _e_p_hamacase:
 .. autofunction:: hama_case_cli
 
+.. 
+    ==========
 
-==========
+    .. _e_p_guppy:
+    .. autofunction:: guppy_cli
 
-.. _e_p_guppy:
-.. autofunction:: guppy_cli
-
-..
     ==========
 
     .. _e_p_grimble:

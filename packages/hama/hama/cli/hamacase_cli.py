@@ -17,9 +17,11 @@ defined in the dictionary'''
 def hama_case_cli():
     '''Entry point for :ref:`hama-case <cli_hama-case>` console command.
     
-    .. todo:: Implement filter functionality ($ echo nimh | hama-case => 'NiMH')
-    .. todo:: Format for `more_capitalisation` file is too strict. Allow also line ends (at least)
-    .. todo:: `more_capitalisation` list doesn't allow group of words
+    FIXME Implement filter functionality ($ echo nimh | hama-case => 'NiMH')
+    
+    FIXME Format for `more_capitalisation` file is too strict. Allow also line ends (at least)
+    
+    FIXME `more_capitalisation` list doesn't allow group of words
     
     '''
     
