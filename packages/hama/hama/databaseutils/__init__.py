@@ -1,5 +1,8 @@
 """
-TODO docstring
+Database
+--------
+
+
 """
 
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
@@ -7,7 +10,7 @@ from sqlalchemy.orm import mapper, sessionmaker
 
 from decimal import Decimal
 
-from hama.databaseutils.product import Product, PricesContainer
+from hama.databaseutils.product import Product
 from hama.databaseutils.price import Price
 
 
@@ -30,9 +33,15 @@ CONNECTION_STRING = CONNECTION_STRING % {
     'd': DATABASE
 }
 
-class Database(object):
-    """ TODO docstring """         
+class Database(dict):
+    """ 
+    TODO docstring
+    
+    trydtuy7u 
+    """         
     def __init__(self, connection_string=None, echo=False):
+        dict.__init__(self)
+        
         class Container(object):
             """ TODO docstring """
             pass       
@@ -101,7 +110,15 @@ class Database(object):
             supplier_id = supplier[0]          
             self.suppliers[supplier_id] = Container()
             self.suppliers[supplier_id].name = supplier[1]
+
+        query = tables['price_types'].select()
+        price_types = self.session.execute(query).fetchall()        
+        self.price_types = {}
         
+        for price_type in price_types:
+            price_types_id = price_type[0]          
+            self.price_types[price_types_id] = Container()
+            self.price_types[price_types_id].name = price_type[1]        
 
         # Build the object
         # This is achieved by iterating through all products, finding any 
@@ -112,43 +129,27 @@ class Database(object):
         # head around it
         #
         # NB: each ``product'' is an instance of hama.databaseutils.Product
-        self.container = {}
+
         
         for product in products:
-            condition = Price.product_id == product.product_id
+            condition = (Price.product_id == product.product_id)
             prices = price_query.filter(condition).all()
             
-            for price in prices:
-                price.parent = product           
-                product.prices.append(price)
+            for price in prices:        
+                product.prices._append(price)
             
             product.parent = self
-            self.container[product.product_id] = product    
+            self[product.product_id] = product    
     
 ###### End __init__ ###########################################################
 ################################################################################
 
     
-    def __getitem__(self, key):
-        return self.container[key]
-        
-    def keys(self):
-        """ TODO docstring """
-        return self.container.keys()
         
     def commit(self):
         """ TODO docstring """
         self.session.commit()
         
-    def __contains__(self, code):
-        return code in self.container
-        
-    def __iter__(self):
-        keys = sorted(self.container.keys())
-        return iter([self.container[i] for i in keys])
-        
-    def __len__(self):
-        return len(self.container)
 
     def __repr__(self):
-        return '<%s: %s>' % (self.__class__.__name__, len(self.container))
+        return '<%s: %s>' % (self.__class__.__name__, len(self))

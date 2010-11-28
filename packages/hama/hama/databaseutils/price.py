@@ -1,5 +1,8 @@
 '''
-.. todo:: hama.databaseutils.price docstring
+Price
+-----
+
+setrui
 '''
 
 class Price(object):
@@ -17,18 +20,48 @@ class Price(object):
         '''Remove the price from the product.'''
         self.parent.parent.session.delete(self)
 
-    def __get_price_type (self):
+
+    def __get_type (self):
         """TODO docstring"""
-        # TODO replace placeholder
-        return self
+        return self.parent.parent.price_types[self.price_type_id].name.upper()
+
         
-    price_type = property(fget=__get_price_type)
+    type = property(fget=__get_type)
+
+
+    def set_minimum_qty(self, value):
+        """ TODO Replace temporary method
+        
+        This is not the final solution. If this is bypassed
+        and minimum_qty is changed directly, keys in prises
+        container will go out of sync
+        """
+        old_key = (self.price_type_id, self.minimum_qty)
+        self.minimum_qty = value
+        new_key = (self.price_type_id, self.minimum_qty)
+        del self.parent.prices[old_key]
+        self.parent.prices[new_key] = self
+
+
+    def set_price_type_id(self, value):
+        """ TODO Replace temporary method
+        
+        This is not the final solution. If this is bypassed
+        and minimum_qty is changed directly, keys in prises
+        container will go out of sync
+        """
+        old_key = (self.price_type_id, self.minimum_qty)
+        self.price_type_id = value
+        new_key = (self.price_type_id, self.minimum_qty)
+        del self.parent.prices[old_key]
+        self.parent.prices[new_key] = self
+
 
     def __repr__(self):
         repr_template = '<%s: %s@%s %s>'
         repr_data = (
             self.__class__.__name__,
-            self.price_type_id,
+            self.type,
             self.minimum_qty,
             self.price_value
             )

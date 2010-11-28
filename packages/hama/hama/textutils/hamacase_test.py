@@ -7,7 +7,7 @@ from hama.textutils.hamacase import hama_case
 class HamaCaseTest(unittest.TestCase):
     """Test hama_case"""
     def test_hama_case(self):
-        """Capitalisation"""
+        """Text:capitalisation"""
         cases = (
             ('ee','Ee'),
             ('seven or more', 'Seven or mOre', ['mOre'])

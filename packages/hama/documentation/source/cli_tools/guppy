@@ -10,7 +10,7 @@
 
 You can get quick help with the -h switch
 
-.. program-output:: ../../../bin/guppy -h
+.. program-output:: guppy -h
    :prompt:
    
 -----
