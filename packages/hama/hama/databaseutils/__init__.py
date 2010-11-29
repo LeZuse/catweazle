@@ -15,38 +15,27 @@ from hama.databaseutils.price import Price
 
 
 # TODO store connenction details somewhere else
+CONNECTION_STRING = 'mysql://python:211573@localhost:3306/\
+catweazle2011?charset=utf8'
 
-ENGINE = 'mysql'
-USER = 'python'
-PASSWORD = '211573'
-HOST = 'localhost'
-DATABASE = 'catweazle2011'
-
-
-
-CONNECTION_STRING = '%(e)s://%(u)s:%(p)s@%(h)s:3306/%(d)s?charset=utf8'
-CONNECTION_STRING = CONNECTION_STRING % {
-    'e': ENGINE,
-    'u': USER, 
-    'p': PASSWORD,
-    'h': HOST,
-    'd': DATABASE
-}
 
 class Database(dict):
     """ 
-    TODO docstring
+    Describes the top Database object
     
-    trydtuy7u 
+    Currently can be instantiated only once per script per database, otherwise
+    we get the `sqlalchemy.orm.mapper` errors
     """         
     def __init__(self, connection_string=None, echo=False):
         dict.__init__(self)
         
         class Container(object):
-            """ TODO docstring """
-            pass       
+            """ Helper to hold additional tables in easy-to-access format 
+            
+            This will hopefuly go as soon as I'll get my head 
+            around the sqlalchemy relationships
+            """
         
-        # XXX temporary fix before I sort out the connection details
         connection_string = CONNECTION_STRING
         
         # Boilerplate
@@ -147,9 +136,23 @@ class Database(dict):
     
         
     def commit(self):
-        """ TODO docstring """
+        """ Commit changes to database """
         self.session.commit()
         
+    def rollback(self):
+        """ Rollback uncommited changes 
+        
+        .. warning:: 
+           
+           This will currently **not restore all attributes** to 
+           their former glory. If you, for example, rollback changes
+           price `minimum_qty` or `price_type_id`, these changes will be
+           purged from session.dirty but the keys im `product.prices` 
+           will still have the new values
+           
+           In a nutshell: Don't rely on database object after you call rollback()
+        """
+        self.session.rollback()
 
     def __repr__(self):
         return '<%s: %s>' % (self.__class__.__name__, len(self))

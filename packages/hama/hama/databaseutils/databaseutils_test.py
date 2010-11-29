@@ -62,7 +62,7 @@ class PriceTests(unittest.TestCase):
         
         self.assertEquals(price in DATABASE.session.deleted, True)
         
-        DATABASE.session.rollback()
+        DATABASE.rollback()
         
     def test_type(self):
         """ Database::Price: price type """
@@ -75,7 +75,7 @@ class PriceTests(unittest.TestCase):
             product = DATABASE[price_test_case[0]]
             price = product.prices[price_test_case[1]]
             price_type_test_case = price_test_case[2]
-            price_type_database = price.type
+            price_type_database = price.type_
             self.assertEquals(price_type_database, price_type_test_case)
 
 
@@ -101,3 +101,4 @@ class PriceTests(unittest.TestCase):
         self.assertEquals((2, 24) not in product.prices, True)
         
         price.set_price_type_id(2)
+
