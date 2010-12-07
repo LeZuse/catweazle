@@ -1,4 +1,4 @@
-#include "string_sprintf.jsx"
+#include "format.jsx"
 
 String.prototype.toTitleCase = function(){
 	return this.split(' ').map(function(word){

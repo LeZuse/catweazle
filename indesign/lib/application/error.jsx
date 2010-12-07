@@ -1,0 +1,1 @@
+Error.prototype.report = function(description){	var output = [];	var msg = [		[				description],		['File: ',		(!this.fileName ? '???' : decodeURI(this.fileName))],		['Line: ',		(this.line || '???')],		['Name: ',		this.name],		['Message: ',	this.message]		];		output = msg.map(function(line){ return line.join(': ')})				return output.join('\, ')	}

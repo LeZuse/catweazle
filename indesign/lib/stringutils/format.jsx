@@ -1,7 +1,7 @@
 #targetengine "session"
 
 
-String.prototype.sprintf = function(replacers){
+String.prototype.format = function(replacers){
 
     var sprintfWrapper = {
      
@@ -137,4 +137,4 @@ String.prototype.sprintf = function(replacers){
     return sprintf.apply(null, params)
     }
 
-app.addons.push('String.prototype.sprintf');
+app.addons.push('String.prototype.format');
