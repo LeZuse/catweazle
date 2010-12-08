@@ -20,10 +20,15 @@ var event_names = [
 
 
 event_names.each(function(event_name){    
+    import_command = '#include "%slib/EventListeners/%s.jsx"'.format(app.ROOT_DIRECTORY, event_name)
+    
+
+
+
     try{
         //function callback(event){
-        eval('#include "./lib/EventListeners/%s.jsx"'.format(event_name));
-            //}
+        eval(import_command)
+        //}
         app.addEventListener(event_name, callback, false) ;
         }
         
