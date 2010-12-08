@@ -1,0 +1,1 @@
+Array.prototype.filter = function(func){	var result = [];	this.each(function(element){		if(func(element)){			result.push(element);			}		});	return result	}app.addons.push('Array.prototype.filter');

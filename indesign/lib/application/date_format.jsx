@@ -123,4 +123,4 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
 	return dateFormat(this, mask, utc);
 };
-
+app.addons.push('Date.prototype.format');
