@@ -1,6 +1,3 @@
-#targetengine "session"
-
-
 String.prototype.format = function(replacers){
 
     var sprintfWrapper = {

@@ -1,1 +1,1 @@
-Array.prototype.map = function(func){	var result = [];	this.each(function(element, i){		result.push(func(element, i));		});	return result;	}app.addons.push('Array.prototype.map');
+Array.prototype.map = function(func){	var result = [];	this.each(function(element, i){		result.push(func(element, i));		});	return result;	}app.addons.push('Array.prototype.map');
