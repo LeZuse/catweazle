@@ -29,7 +29,19 @@ event_names.each(function(event_name){
         //function callback(event){
         eval(import_command)
         //}
-        app.addEventListener(event_name, callback, false) ;
+        
+        var guarded_callback = function(event){
+            try{
+                callback(event);
+                }
+            catch(e){
+                app.error('error, when executing %s callback'.format(event.eventType))
+                app.debug('\t' + e.report().split('\n').join('\n\t'))
+                app.debug('STACK\n\t' + $.stack.split('\n').join('\n\t'))
+                }
+            }
+        
+        app.addEventListener(event_name, guarded_callback, false) ;
         }
         
     catch(e){ 
