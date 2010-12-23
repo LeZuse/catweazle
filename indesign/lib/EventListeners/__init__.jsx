@@ -1,5 +1,6 @@
 app.eventListeners.everyItem().remove();
 
+
 var event_names = [
     "afterClose", "beforeClose",
     "afterExport", "beforeExport",
@@ -10,28 +11,34 @@ var event_names = [
     "afterRevert", "beforeRevert",
     "afterSave", "beforeSave",
     "afterSaveACopy", "beforeSaveACopy",
-    "afterSaveAs", "beforeSaveAs"
+    "afterSaveAs", "beforeSaveAs",
+    "beforeQuit", "afterQuit"
+    // "afterSelectionAttributeChanged"
     ];
 
-/* CS5 only
-* "beforeQuit"
-* "afterQuit"
-*/
-
-
 event_names.each(function(event_name){    
+
+    function callback(event){
+        app.info(event.target)
+        app.info(event.currentTarget)
+        app.info('==========================')
+        }
+
+
+
     import_command = '#include "%slib/EventListeners/%s.jsx"'.format(app.ROOT_DIRECTORY, event_name)
     
 
-
-
     try{
+        
+        // override callback
         //function callback(event){
         eval(import_command)
         //}
         
         var guarded_callback = function(event){
             try{
+                app.info(event.eventType)
                 callback(event);
                 }
             catch(e){
@@ -52,4 +59,4 @@ event_names.each(function(event_name){
         
     });
 
-app.info('Finished event listeners set-up');
+app.info('Finished event listeners set-up'); 

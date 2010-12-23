@@ -1,3 +1,21 @@
+// placeholder
+
 function callback(event){
-    app.debug('%s event occured'.format(event.eventType))
+    var doc = event.target
+    
+    var print_preferences = doc.printPreferences
+    
+    
+    for (i in print_preferences){
+        
+        try{
+            app.info('%s: %s'.format(i, print_preferences[i]))
+            }
+        catch(e){}
+        }
+    
+    
+//     app.info(doc.printPreferences.pageRange)
+
+                        
     }
