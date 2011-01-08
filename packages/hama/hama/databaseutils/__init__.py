@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Database
 --------
@@ -126,6 +127,7 @@ class Database(dict):
             
             for price in prices:        
                 product.prices._append(price)
+
             
             product.parent = self
             self[product.product_id] = product    
