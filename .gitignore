@@ -1,4 +1,5 @@
 *.pyc
+*.indd
 packages/*/documentation/build/*
 bin/*
 include/*
