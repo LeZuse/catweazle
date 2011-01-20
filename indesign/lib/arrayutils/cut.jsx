@@ -1,0 +1,1 @@
+Array.prototype.cut =  function(token){	if(!token.match(/\d*:\d*/)){		throw 'invalid argument!'		}	var start = token.split(':')[0] !== '' ? token.split(':')[0] : 0;	var end = token.split(':')[1] !== '' ? token.split(':')[1] : this.length;		return this.slice(start, end)	}app.addons.push('Array.prototype.cut');
