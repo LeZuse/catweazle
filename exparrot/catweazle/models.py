@@ -63,7 +63,7 @@ class ProductAttributeType(models.Model):
 
 
 class ProductAttribute(models.Model):
-    product_attribute_name = models.CharField(max_length=64)
+    product_attribute_name = models.CharField(max_length=64, unique=True)
     product_attribute_type = models.ForeignKey(ProductAttributeType)
 
     def __unicode__(self):
@@ -126,14 +126,6 @@ class Product(models.Model):
     supplier_code = models.CharField(max_length=48)
     supplier = models.ForeignKey(Supplier, null=True, blank=True)
     
-    @property
-    def section(self):
-        return self.presenter_section
-
-
-
-
-
 
     
     def __unicode__(self):
@@ -147,7 +139,7 @@ class Price(models.Model):
     product = models.ForeignKey(Product)
     price_type = models.ForeignKey(PriceType)
     minimum_qty = models.PositiveIntegerField()
-    price_value = models.DecimalField(max_digits=7, decimal_places=2)
+    price_value = models.DecimalField(max_digits=10, decimal_places=2)
     is_nlp = models.BooleanField()
     
     def __unicode__(self):
